@@ -1,35 +1,31 @@
-Classes
+Lớp
 -------
 
-Classes are the core of Python. They give us a lot of power but it is
-really easy to misuse this power. In this section I will share some
-obscure tricks and caveats related to ``classes`` in Python. Let's get
-going!
+Lớp là thành phần lõi của Python. Lớp đem lại nhiều sức mạnh nhưng khiến ta rơi vào tình thế lạm dụng chúng.
+Trong phần này tôi sẽ chia sẻ một số mẹo và các khuyến cáo liên quan tới ``lớp`` trong Python. Nào hãy bắt đầu
 
-1. Instance & Class variables
+1. Các biến hiện thực (instance) và Lớp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Most beginners and even some advanced Python programmers do not
-understand the distinction between instance and class variables. Their
-lack of understanding forces them to use these different types of
-variables incorrectly. Let's understand them.
+
+Hầu hết người mới bắt đầu lập trình và thậm chí là một số lập trình viên Python chuyên không hiểu
+sự khác biệt giữa các biến hiện thực và lớp. Sự thiếu sót này khiến họ dùng không đúng các kiểu biến. Hãy cùng tìm hiểu các biến này  
 
 The basic difference is:
+Sự khác biệt căn bản giữa hai biến này là:
 
--  Instance variables are for data which is unique to every object
--  Class variables are for data shared between different instances of a
-   class
-
-Let's take a look at an example:
+- Các biến hiện thực là dữ liệu đơn nhất cho mọi đối tượng
+- Các biến lớp là dữ liệu được chia sẻ giữa các hiện thực khác nhau của một lớp
+Cùng lấy một ví dụ
 
 .. code:: python
 
     class Cal(object):
-        # pi is a class variable
+        # pi là một biến lớp
         pi = 3.142
 
         def __init__(self, radius):
-            # self.radius is an instance variable
+            # self.radius là một biến hiện thực
             self.radius = radius
 
         def area(self):
@@ -37,27 +33,32 @@ Let's take a look at an example:
 
     a = Cal(32)
     a.area()
-    # Output: 3217.408
+    # Kết quả: 3217.408
     a.pi
-    # Output: 3.142
+    # Kết quả: 3.142
     a.pi = 43
     a.pi
-    # Output: 43
+    # Kết quả: 43
 
     b = Cal(44)
     b.area()
-    # Output: 6082.912
+    # Kết quả: 6082.912
     b.pi
-    # Output: 3.142
+    # Kết quả: 3.142
     b.pi = 50
     b.pi
-    # Output: 50
+    # Kết quả: 50
 
 There are not many issues while using immutable class variables. This is
 the major reason due to which beginners do not try to learn more about
 this subject because everything works! If you also believe that instance
 and class variables can not cause any problem if used incorrectly then
 check the next example.
+
+Ta không gặp nhiều vấn đề khi sử dụng các biến lớp có giá trị không thay đổi (immutable). 
+Lý do chính là khiến cho người mới bắt đầu không tìm hiểu về vấn đề này là do mọi thứ chạy bình thường!
+Nếu bạn vẫn còn tin rằng các biến hiện thực và các biến lớp không thể gây ra bất cứ vấn đề khi bạn dùng chúng
+sai thì hãy xem ví dụ dưới đây
 
 .. code:: python
 
@@ -73,36 +74,35 @@ check the next example.
     foo = SuperClass('foo')
     bar = SuperClass('bar')
     foo.name
-    # Output: 'foo'
+    # Kết quả: 'foo'
 
     bar.name
-    # Output: 'bar'
+    # Kết quả: 'bar'
 
     foo.add_superpower('fly')
     bar.superpowers
-    # Output: ['fly']
+    # Kết quả: ['fly']
 
     foo.superpowers
-    # Output: ['fly']
+    # Kết quả: ['fly']
 
-That is the beauty of the wrong usage of mutable class variables. To
-make your code safe against this kind of surprise attacks then make sure
-that you do not use mutable class variables. You may use them only if
-you know what you are doing.
+Ví dụ trên điển hình cho việc sử dụng các biến lớp có thể thay đổi giá trị (mutable). 
+Để làm cho đoạn mã của bạn an toàn trong những tình huống như trên, hãy chắc rằng
+bạn không dùng các biến lớp có giá trị có thể thay đổi. Nếu bạn vẫn muốn dùng thì hãy chắc
+rằng bạn biết rõ mình đang làm gì.
 
-2. New style classes
+2. Các lớp kiểu mới
 ^^^^^^^^^^^^^^^^^^^^
 
-New style classes were introduced in Python 2.1 but a lot of people do
-not know about them even now! It is so because Python also supports old
-style classes just to maintain backward compatibility. I have said a lot
-about new and old but I have not told you about the difference. Well the
-major difference is that:
 
--  Old base classes do not inherit from anything
--  New style base classes inherit from ``object``
+Các lớp kiểu mới được giới thiệu trong Python 2.1 nhưng rất nhiều người 
+thậm chí không biết về nó! Lý do là vì Python vẫn hỗ trợ các lớp kiểu cũ nhằm 
+duy trì tương thích ngược (backward compatibility). Tôi đã nhắc tới điều này nhiều lần nhưng
+tôi chưa nói sự khác biệt. Sự khác biệt chính như sau:
 
-A very basic example is:
+- Các lớp cũ không thừa hưởng từ bất cứ thứ gì
+- Các lớp kiểu mới thừa hưởng từ ``object``
+Nhìn vào ví dụ dưới đây:
 
 .. code:: python
 
@@ -115,21 +115,18 @@ A very basic example is:
             print('I am a jazzy new class')
 
     old = OldClass()
-    # Output: I am an old class
+    # Kết quả: I am an old class
 
     new = NewClass()
-    # Output: I am a jazzy new class
+    # Kết quả: I am a jazzy new class
 
-This inheritance from ``object`` allows new style classes to utilize
-some *magic*. A major advantage is that you can employ some useful
-optimizations like ``__slots__``. You can use ``super()`` and
-descriptors and the likes. Bottom line? Always try to use new-style
-classes.
 
-**Note:** Python 3 only has new-style classes. It does not matter
-whether you subclass from ``object`` or not. However it is recommended
-that you still subclass from ``object``.
+Việc thừa hưởng từ ``object`` cho phép các lớp kiểu mới tận dụng một vài **magic** (ma thuật).
+Lợi ích chính là bạn có thể thực hiện một vài tối ưu hữu dụng như ``__slots__``. Bạn có thể 
+sử dụng ``super()`` và các mô tả (descriptors). Vậy nên hãy cố gắng dùng các lớp kiểu mới.
 
+**Chú ý:** Python 3 chỉ các các lớp kiểu mới. Do đó không quan trọng bạn phân lớp (subclass) từ ``object``
+hay không, bạn vẫn đang dùng các lớp kiểu mới. Tuy nhiên bạn vẫn được khuyến khích phân lớp từ ``object``.
 3. Magic Methods
 ^^^^^^^^^^^^^^^^
 
