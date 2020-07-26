@@ -1,9 +1,9 @@
 Collections
 -----------
 
-Python ships with a module that contains a number of container data
-types called Collections. We will talk about a few of them and discuss
-their usefulness.
+
+Python cung cấp một module chứa đựng các kiểu dữ liệu bộ chứa được gọi là Collections. 
+Chúng ta cùng nhau tìm hiểu và thảo luận về nó.
 
 The ones which we will talk about are:
 
@@ -17,9 +17,8 @@ The ones which we will talk about are:
 ``defaultdict``
 ^^^^^^^^^^^^^^^^^^^
 
-I personally use defaultdict quite a bit. Unlike ``dict``, with
-``defaultdict`` you do not need to check whether a key is present or
-not. So we can do:
+Không giống như kiểu ``dict`` bình thường, với ``defaultdict`` bạn không cần phải kiểm tra xem một khoá có tồn tại hay không.
+Do đó ta có thể làm:
 
 .. code:: python
 
@@ -49,14 +48,9 @@ not. So we can do:
     #     'Ali': ['Blue', 'Black']
     # })
 
-One other very important use case is when you are appending to nested
-lists inside a dictionary. If a ``key`` is not already present in the
-dictionary then you are greeted with a ``KeyError``. ``defaultdict``
-allows us to circumvent this issue in a clever way. First let me share
-an example using ``dict`` which raises ``KeyError`` and then I will
-share a solution using ``defaultdict``.
 
-**Problem:**
+Một trong những những điểm cần lưu ý đó là khi bạn thêm một phần tử vào trong một từ điển. Nếu khoá không có sẵn trước thì bạn sẽ gặp phải lỗi ``KeyError``. Với ``defaultdict``, bạn có thể giải quyết được ấn đề này. Hãy cùng xem các ví dụ dưới đây để hiểu thêm
+**Vấn đề:**
 
 .. code:: python
 
@@ -64,7 +58,7 @@ share a solution using ``defaultdict``.
     some_dict['colours']['favourite'] = "yellow"
     # Raises KeyError: 'colours'
 
-**Solution:**
+**Lời giải:**
 
 .. code:: python
 
@@ -72,39 +66,37 @@ share a solution using ``defaultdict``.
     tree = lambda: defaultdict(tree)
     some_dict = tree()
     some_dict['colours']['favourite'] = "yellow"
-    # Works fine
+    # Code chạy bình thường
 
-You can print ``some_dict`` using ``json.dumps``. Here is some
-sample code:
+
+Bạn có thể hiển thị `some_dict`` sử dụng ``json.dumps`. Ví dụ
 
 .. code:: python
 
     import json
     print(json.dumps(some_dict))
-    # Output: {"colours": {"favourite": "yellow"}}
+    # Kết quả: {"colours": {"favourite": "yellow"}}
 
 ``OrderedDict``
 ^^^^^^^^^^^^^^^^^^^
 
-``OrderedDict`` keeps its entries sorted as they are initially inserted.
-Overwriting a value of an existing key doesn't change the position of
-that key. However, deleting and reinserting an entry moves the key to
-the end of the dictionary. 
+``OrderedDict`` duy trì thứ tự các phần tử được chèn vào. Ghi đè lên một giá trị của một khoá đã tồn tại không làm thay đổi vị trí của khoá đó. Tuy nhiên, việc xoá và chèn lại một phần tử di chuyển khoá tới cuối của từ điển.
 
-**Problem:**
+
+**Vấn đề:**
 
 .. code:: python
 
     colours =  {"Red" : 198, "Green" : 170, "Blue" : 160}
     for key, value in colours.items():
         print(key, value)
-    # Output:
+    #  quả:
     #   Green 170
     #   Blue 160
     #   Red 198
-    # Entries are retrieved in an unpredictable order
+    #  Các phần tử được in ra theo thứ tự ngẫu nhiên
    
-**Solution:**
+**Giải pháp:**
 
 .. code:: python
 
@@ -113,18 +105,17 @@ the end of the dictionary.
     colours = OrderedDict([("Red", 198), ("Green", 170), ("Blue", 160)])
     for key, value in colours.items():
         print(key, value)
-    # Output:
+    # Kết quả:
     #   Red 198
     #   Green 170
     #   Blue 160
-    # Insertion order is preserved
+    # Thứ tự phần tử được chèn vào được duy trì
 
 ``Counter``
 ^^^^^^^^^^^^^^^
 
-Counter allows us to count the occurrences of a particular item. For
-instance it can be used to count the number of individual favourite
-colours:
+
+Counter cho phép ta đếm số lần xuất hiện của một phần tử. Ví dụ nó có thể được sử dụng để đếm số lượng các màu sắc riêng biệt.
 
 .. code:: python
 
@@ -141,15 +132,14 @@ colours:
 
     favs = Counter(name for name, colour in colours)
     print(favs)
-    # Output: Counter({
+    # Kết quả: Counter({
     #    'Yasoob': 2,
     #    'Ali': 2,
     #    'Arham': 1,
     #    'Ahmed': 1
     # })
 
-We can also count the most common lines in a file using it. For example:
-
+Chúng ta cũng có thể đếm những dòng phổ biến nhất trong một file. Ví dụ
 .. code:: python
 
     with open('filename', 'rb') as f:
@@ -159,23 +149,17 @@ We can also count the most common lines in a file using it. For example:
 ``deque``
 ^^^^^^^^^^^^^
 
-``deque`` provides you with a double ended queue which means that you
-can append and delete elements from either side of the queue. First of
-all you have to import the deque module from the collections library:
 
+``deque`` cung cấp một hàng đợi với hai đầu mở, có nghĩa là bạn có thể nối và xoá các phần tử từ cả hai đầu của hàng đầu. 
 .. code:: python
 
     from collections import deque
-
-Now we can instantiate a deque object.
-
+Bạn có thể khởi tạo một đối tượng deque
 .. code:: python
 
     d = deque()
 
-It works like python lists and provides you with somewhat similar
-methods as well. For example you can do:
-
+``deque`` hoạt động giống như các lists trong Python, ví dụ bạn có thể làm:
 .. code:: python
 
     d = deque()
@@ -184,79 +168,70 @@ methods as well. For example you can do:
     d.append('3')
 
     print(len(d))
-    # Output: 3
+    # Kết quả: 3
 
     print(d[0])
-    # Output: '1'
+    # Kết quả: '1'
 
     print(d[-1])
-    # Output: '3'
+    # Kết quả: '3'
 
-You can pop values from both sides of the deque:
-
+Bạn có thể loại các giá trị ra khởi deque từ cả hai đầu
 .. code:: python
 
     d = deque(range(5))
     print(len(d))
-    # Output: 5
+    # Kết quả: 5
 
     d.popleft()
-    # Output: 0
+    # Kết quả: 0
 
     d.pop()
-    # Output: 4
+    # Kết quả: 4
 
     print(d)
-    # Output: deque([1, 2, 3])
+    # Kết qur: deque([1, 2, 3])
 
-We can also limit the amount of items a deque can hold. By doing this
-when we achieve the maximum limit of our deque it will simply pop out
-the items from the opposite end. It is better to explain it using an
-example so here you go:
+
+Ta cũng có thể giới hạn số lượng các phần tử mà một deque có thể chứa. Khi số lượng phần tử của một deque đạt dgiới hạn nó sẽ loại ra các phần tử ở đầu ngược lại. Hãy xem ví dụ sau:
 
 .. code:: python
 
     d = deque([0, 1, 2, 3, 5], maxlen=5)
     print(d)
-    # Output: deque([0, 1, 2, 3, 5], maxlen=5)
+    # Kết quả: deque([0, 1, 2, 3, 5], maxlen=5)
     
     d.extend([6])
     print(d)
-    #Output: deque([1, 2, 3, 5, 6], maxlen=5)
+    #Kết quả: deque([1, 2, 3, 5, 6], maxlen=5)
 
 Now whenever you insert values after 5, the leftmost value will be
 popped from the list. You can also expand the list in any direction with
 new values:
-
+Bây giờ thì khi bạn chèn các giá trị đằng sau số 5, giá trị phía bên trái sẽ bị loại khỏi danh sách. Bạn có thể mở rộng danh sách ở bất cứ hướng nào với các giá trị mới.
 .. code:: python
 
     d = deque([1,2,3,4,5])
     d.extendleft([0])
     d.extend([6,7,8])
     print(d)
-    # Output: deque([0, 1, 2, 3, 4, 5, 6, 7, 8])
+    # Kết quả: deque([0, 1, 2, 3, 4, 5, 6, 7, 8])
 
 ``namedtuple``
 ^^^^^^^^^^^^^^^^^^
 
-You might already be acquainted with tuples. A tuple is basically
-a immutable list which allows you to store a sequence of values
-separated by commas. They are just like lists but have a few key
-differences. The major one is that unlike lists, **you can not
-reassign an item in a tuple**. In order to access the value in a
-tuple you use integer indexes like:
+
+Chắc bạn đã biết về tuples. Nó là một danh sách không thay đổi được giá trị, và cho phép bạn lưu chuỗi các giá trị được phân cách bởi dấu phẩy. Khấc với lists, **Bạn không thể gán lại giá trị của một phần tử trong một tuple**. Để truy cập vào một giá trị trong một tuple bạn sử dụng các chỉ số nguyên như sau:
 
 .. code:: python
 
     man = ('Ali', 30)
     print(man[0])
-    # Output: Ali
+    # Kết quả: Ali
 
-Well, so now what are ``namedtuples``? They turn tuples into convenient
-containers for simple tasks. With namedtuples you don't have to use
-integer indexes for accessing members of a tuple. You can think of
-namedtuples like dictionaries but unlike dictionaries they are
-immutable.
+
+Vậy thì ``namedtuples`` là gì? Đây là biến thể của tuples dành cho các tác vụ đơn giản.
+Với namedtuples bạn không phải sử dụng các chỉ số nguyên để truy cập các phần tử của một tuple. Bạn có thể hình dung namedtuples như là các từ điển, nhưng giá trị thì không thể thay đổi được.
 
 .. code:: python
 
@@ -266,24 +241,13 @@ immutable.
     perry = Animal(name="perry", age=31, type="cat")
 
     print(perry)
-    # Output: Animal(name='perry', age=31, type='cat')
+    # Kết quả: Animal(name='perry', age=31, type='cat')
 
     print(perry.name)
-    # Output: 'perry'
+    # Kết quả: 'perry'
 
-You can now see that we can access members of a tuple just by their
-name using a ``.``. Let's dissect it a little more. A named tuple has two
-required arguments. They are the tuple name and the tuple field\_names.
-In the above example our tuple name was 'Animal' and the tuple
-field\_names were 'name', 'age' and 'type'. Namedtuple makes your tuples
-**self-document**. You can easily understand what is going on by having
-a quick glance at your code. And as you are not bound to use integer
-indexes to access members of a tuple, it makes it more easy to maintain
-your code. Moreover, as **`namedtuple` instances do not have
-per-instance dictionaries**, they are lightweight and require no more
-memory than regular tuples. This makes them faster than dictionaries.
-However, do remember that as with tuples, **attributes in namedtuples
-are immutable**. It means that this would not work:
+
+Bạn có thể truy cập vào các phần tử của một tuple sử dụng dấu ``.``. Cùng tìm hiểu sâu hơn. Một tuple được đặt tên có các tham số yêu cầu. Các tham số này là tên tuple và các tên trường của tuple. Trong ví dụ phía trên, tuple của chúng ta có tên là 'Animal và các trường có tên là 'name', 'age' và 'type'. Namedtuple giúp cho các tuples dễ hiểu hơn khi nhìn vào code. Ngoài ra vì bạn không nhất thiết phải dùng các chỉ số nguyên để truy cập tuple, giúp cho code dễ bảo trì hơn. Hơn nữa, các tuples nhẹ và xài ít bộ nhớ hơn tuples bình thường. `namedtuple` nhanh hơn các từ điển. Tuy nhiên, nhớ rằng **các thuộc tính trong `namedtuple` là không thể thay đổi**. Có nghĩa là đoạn mã dưới đây sẽ không hoạt động:
 
 .. code:: python
 
@@ -293,14 +257,12 @@ are immutable**. It means that this would not work:
     perry = Animal(name="perry", age=31, type="cat")
     perry.age = 42
 
-    # Output: Traceback (most recent call last):
+    #Kết quả: Traceback (most recent call last):
     #            File "", line 1, in
     #         AttributeError: can't set attribute
 
-You should use named tuples to make your code self-documenting. **They
-are backwards compatible with normal tuples**. It means that you can use
-integer indexes with namedtuples as well:
 
+Bạn nên sử dụng named tuples để làm cho code dễ hiểu hơn. **named tuples có tương thích ngược với các tuples bình thường**. Nghĩa là bạn có thể sử dụng các chỉ số nguyên với các namedtuples:
 .. code:: python
 
     from collections import namedtuple
@@ -310,9 +272,8 @@ integer indexes with namedtuples as well:
     print(perry[0])
     # Output: perry
 
-Last but not the least, you can convert a namedtuple to a dictionary.
-Like this:
 
+Không kém phần quan trọng, bạn có thể chuyển đổi một namedtuple sang một từ điển. Như sau:
 .. code:: python
 
     from collections import namedtuple
@@ -320,23 +281,19 @@ Like this:
     Animal = namedtuple('Animal', 'name age type')
     perry = Animal(name="Perry", age=31, type="cat")
     print(perry._asdict())
-    # Output: OrderedDict([('name', 'Perry'), ('age', 31), ...
+    # Kết quả: OrderedDict([('name', 'Perry'), ('age', 31), ...
 
 ``enum.Enum`` (Python 3.4+)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Another useful collection is the enum object. It is available in the ``enum``
-module, in Python 3.4 and up (also available as a backport in PyPI named ``enum34``.)
-Enums (`enumerated type <https://en.wikipedia.org/wiki/Enumerated_type>`_) are
-basically a way to organize various things.
+Một kiểu dữ liệu quan trọng khác là enum. Đối tượng này tích hợp trong module ``enum`` từ Python 3.4 trở đi (và có một backport trong PyPI tên là ``enum34``. ).
+Enums (`enumerated type <https://en.wikipedia.org/wiki/Enumerated_type>`_) là một cách để tổ chức những thứ khác nhau.
 
-Let’s consider the Animal namedtuple from the last example.  It had a ``type``
-field.  The problem is, the type was a string.  This poses some problems for
-us. What if the user types in ``Cat`` because they held the Shift key?  Or
-``CAT``?  Or ``kitten``?
 
-Enumerations can help us avoid this problem, by not using strings.  Consider
-this example:
+Cùng xem ví dụ namedtuple Animal. Đối tượng này có một trường là ``type``. Vấn đề ở đây là, type là một chuỗi văn bản. Điều này gây ra một vài vấn đề. Điều gì nếu người dùng gõ ``Cat`` bởi vì họ gõ cả phím Shift? Hay là ``CAT``?  hoặc ``kitten``?
+
+
+Enumerations có thể giúp ta giải quyết vấn đề này, bằng cách không dùng strings. Nhìn vào ví dụ sau:
 
 .. code:: python
 
@@ -371,12 +328,9 @@ this example:
     >>> charlie.type
     <Species.cat: 1>
 
+Cách làm trên tránh lỗi sai ít nhất. Chúng ta phải khai báo thật cụ thể, và chỉ nên sử dụng enumeration cho các kiểu tên.
 
-This is much less error-prone.  We have to be specific, and we should use only
-the enumeration to name types.
-
-There are three ways to access enumeration members.  For example, all three
-methods will get you the value for ``cat``:
+Có ba cách để truy cập các phần tử enumeration. Ví dụ, tất cả ba phương thức trên sẽ cho bạn giá trị của ``cat``:
 
 .. code:: python
 
@@ -384,5 +338,4 @@ methods will get you the value for ``cat``:
     Species['cat']
     Species.cat
 
-This was just a quick drive through the ``collections`` module. Make
-sure you read the official documentation after reading this.
+Bài viết trên giới thiệu cho bạn module ``collections``. Chắc chắn rằng bạn đọc tài liệu gốc của module sau khi đọc bài viết này.
