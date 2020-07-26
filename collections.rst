@@ -5,14 +5,13 @@ Collections
 Python cung cấp một module chứa đựng các kiểu dữ liệu bộ chứa được gọi là Collections. 
 Chúng ta cùng nhau tìm hiểu và thảo luận về nó.
 
-The ones which we will talk about are:
-
+Dưới đây là các kiểu dữ liệu chúng ta sẽ thảo luận
 -  ``defaultdict``
 -  ``OrderedDict``
 -  ``Counter``
 -  ``deque``
 -  ``namedtuple``
--  ``enum.Enum`` (outside of the module; Python 3.4+)
+-  ``enum.Enum`` (dành cho Python 3.4+)
 
 ``defaultdict``
 ^^^^^^^^^^^^^^^^^^^
