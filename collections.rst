@@ -204,9 +204,6 @@ Ta cũng có thể giới hạn số lượng các phần tử mà một deque c
     print(d)
     #Kết quả: deque([1, 2, 3, 5, 6], maxlen=5)
 
-Now whenever you insert values after 5, the leftmost value will be
-popped from the list. You can also expand the list in any direction with
-new values:
 Bây giờ thì khi bạn chèn các giá trị đằng sau số 5, giá trị phía bên trái sẽ bị loại khỏi danh sách. Bạn có thể mở rộng danh sách ở bất cứ hướng nào với các giá trị mới.
 .. code:: python
 
