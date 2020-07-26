@@ -6,6 +6,7 @@ Python cung cấp một module chứa đựng các kiểu dữ liệu bộ chứ
 Chúng ta cùng nhau tìm hiểu và thảo luận về nó.
 
 Dưới đây là các kiểu dữ liệu chúng ta sẽ thảo luận
+
 -  ``defaultdict``
 -  ``OrderedDict``
 -  ``Counter``
