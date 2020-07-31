@@ -1,28 +1,22 @@
 Comprehensions
 --------------
 
-Comprehensions are a feature of Python which I would really miss if I
-ever have to leave it. Comprehensions are constructs that allow
-sequences to be built from other sequences. Several types of
-comprehensions are supported in both Python 2 and Python 3:
+Comprehensions là một tính năng của Python bạn có thể cần chú ý. Comprehensions là các đối tượng xây dựng cho phép các tạo ra các chuỗi (sequences) từ các chuỗi khác. Một vài kiểu comprehensions được hỗ trợ trong cả Python 3 và Python 3:
 
 -  list comprehensions
 -  dictionary comprehensions
 -  set comprehensions
 -  generator comprehensions
 
-We will discuss them one by one. Once you get the hang of using ``list``
-comprehensions then you can use any of them easily.
+
+Chúng ta sẽ thảo luận từng kiểu comprehensions một. Mỗi khi bạn quen với ``list``
+comprehensions bạn có thể sử dụng các comprehension khác một cách dễ dàng.
 
 ``list`` comprehensions
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-List comprehensions provide a short and concise way to create lists. It
-consists of square brackets containing an expression followed by a
-``for`` clause, then zero or more ``for`` or ``if`` clauses. The
-expressions can be anything, meaning you can put in all kinds of objects
-in lists. The result would be a new list made after the evaluation of
-the expression in context of the ``if`` and ``for`` clauses.
+
+List comprehensions cung cấp một cách ngắn gọn để tạo ra các lists. List comprehension bao gồm các dấu ngặc vuông bao gồm một biểu diễn, sau đó là một câu ``for``, theo sau bởi 0 hay nhiều câu  ``for`` hoặc ``if``. Các biểu diễn này có thể là bất cứ thứ gì, nghĩa là bạn thể đặt tất cả các kiểu đối tượng trong các danh sách. Kết quả sẽ là một danh sách mới được tạo ra sau khi thực hiện biểu diễn với các câu lệnh  ``if`` và ``for``.
 
 **Blueprint**
 
@@ -30,7 +24,7 @@ the expression in context of the ``if`` and ``for`` clauses.
 
     variable = [out_exp for out_exp in input_list if out_exp == 2]
 
-Here is a short example:
+Dưới đây là một ví dụ:
 
 .. code:: python
 
@@ -38,11 +32,8 @@ Here is a short example:
     print(multiples)
     # Output: [0, 3, 6, 9, 12, 15, 18, 21, 24, 27]
 
-This can be really useful to make lists quickly. It is even preferred by
-some instead of the ``filter`` function. List comprehensions really
-shine when you want to supply a list to a method or function to make a
-new list by appending to it in each iteration of the ``for`` loop. For
-instance you would usually do something like this:
+
+Đây là một cách rất hữu dụng để tạo ra các lists nhanh chóng. Nó được ưu dùng hơn sao với hàm "lọc" (``filter`` function). List comprehensions sẽ giúp ích trong tình huống bạn muốn thêm các phần tử vào một danh sách, ở đó phần tử được tạo ra trong vòng lặp  ``for``. Ví dụ bạn có thể làm điều như sau:
 
 .. code:: python
 
@@ -50,8 +41,7 @@ instance you would usually do something like this:
     for x in range(10):
         squared.append(x**2)
 
-You can simplify it using list comprehensions. For example:
-
+Bạn có thể sử dụng list comprehensions với cú pháp đơn giản hơn. Ví dụ:
 .. code:: python
 
     squared = [x**2 for x in range(10)]
@@ -59,8 +49,7 @@ You can simplify it using list comprehensions. For example:
 ``dict`` comprehensions
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-They are used in a similar way. Here is an example which I found
-recently:
+Cách sử dụng cũng tương tự như list comprehensions. Dưới đây là một ví dụ:
 
 .. code:: python
 
@@ -73,9 +62,8 @@ recently:
 
     # mcase_frequency == {'a': 17, 'z': 3, 'b': 34}
 
-In the above example we are combining the values of keys which are same
-but in different typecase. I personally do not use ``dict``
-comprehensions a lot. You can also quickly switch keys and values of a dictionary:
+
+Trong ví dụ trên chúng ta kết hợp giá trị của các khoá giống nhau nhưng khác do kiểu in hoa thường. Bạn cũng có thể hoán đổi các khoá và giá trị của một từ điển như sau:
 
 .. code:: python
 
@@ -84,8 +72,8 @@ comprehensions a lot. You can also quickly switch keys and values of a dictionar
 ``set`` comprehensions
 ^^^^^^^^^^^^^^^^^^^^^^
 
-They are also similar to list comprehensions. The only difference is
-that they use braces ``{}``. Here is an example:
+
+Tương tự như list comprehensions. Sự khác biệt duy nhất là sử dụng các dấu ngoặc ``{}``. Xem một ví dụ dưới đây:
 
 .. code:: python
 
@@ -96,7 +84,8 @@ that they use braces ``{}``. Here is an example:
 ``generator`` comprehensions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-They are also similar to list comprehensions. The only difference is that they don't allocate memory for the whole list but generate one item at a time, thus more memory efficient.
+
+Tương tự như list comprehensions. Sự khác biệt duy nhất đó là ``generator`` comprehensions không cấp phát bộ nhớ cho toàn bộ danh sách mà chỉ sinh ra mỗi phần tử tại một thời điểm, do đó sử dụng hiệu  bộ nhớ.
 
 .. code:: python
 
