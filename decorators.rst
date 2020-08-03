@@ -1,21 +1,19 @@
 Decorators
 ----------
 
-Decorators are a significant part of Python. In simple words: they are
-functions which modify the functionality of other functions. They help
-to make our code shorter and more Pythonic. Most beginners do not
-know where to use them so I am going to share some areas where
-decorators can make your code more concise.
 
-First, let's discuss how to write your own decorator.
+Decorators là một phần quan trọng của Python. Nói một cách đơn giản: decorators là các hàm làm thay đổi tính năng của các hàm khác.
+Chúng giúp cho code của ta ngắn gọn hơn và thuần Python hơn (more Pythonic). Hầu hết những người mới học Python không biết cách dùng decorators, do đó tôi sẽ chia sẻ các trường hợp ta có thể dùng decorators làm cho code tinh gọn hơn.
 
-It is perhaps one of the most difficult concepts to grasp. We will take
-it one step at a time so that you can fully understand it.
 
-Everything in Python is an object:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Đầu tiên hãy thảo luận cách viết một decorator của riêng bạn.
 
-First of all let's understand functions in Python:
+
+Decorator có thể là một khái niệm khó nắm bắt nhất. Chúng ta sẽ cùng thực hiện từng bước một để hiểu nó một cách đầy đủ.
+
+Mọi thứ trong Python đều là một đối tượng (object):
+
+Đầu tiên ta cần hiểu các hàm (functions) trong Python:
 
 .. code:: python
 
@@ -23,30 +21,29 @@ First of all let's understand functions in Python:
         return "hi " + name
 
     print(hi())
-    # output: 'hi yasoob'
+    # Kết quả: 'hi yasoob'
 
-    # We can even assign a function to a variable like
+    # Ta có thể gán một hàm cho một hàm như sau
     greet = hi
-    # We are not using parentheses here because we are not calling the function hi
-    # instead we are just putting it into the greet variable. Let's try to run this
+    
+    # Chúng ta không sử dụng các dấu ngoặc đơn phía sau hàm hi bởi vì chúng ta không gọi hàm này.
+    # thay vào đó chúng ta gán nó cho biết greet. Hãy chạy thử
 
     print(greet())
-    # output: 'hi yasoob'
+    # Kết quả: 'hi yasoob'
 
-    # Let's see what happens if we delete the old hi function!
+    # Điều gì sẽ xảy ra nếu chúng ta xoá đi hàm hi!
     del hi
     print(hi())
-    #outputs: NameError
+    #Kết quả: NameError
 
     print(greet())
-    #outputs: 'hi yasoob'
+    #Kết quả: 'hi yasoob'
 
-Defining functions within functions:
+Định nghĩa các hàm bên trong hàm
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-So those are the basics when it comes to functions. Let's take your
-knowledge one step further. In Python we can define functions inside
-other functions:
+Trong Python chúng ta có thể định nghĩa các hàm bên trong các hàm khác:
 
 .. code:: python
 
@@ -64,28 +61,28 @@ other functions:
         print("now you are back in the hi() function")
 
     hi()
-    #output:now you are inside the hi() function
+    #Kết quả:now you are inside the hi() function
     #       now you are in the greet() function
     #       now you are in the welcome() function
     #       now you are back in the hi() function
-
-    # This shows that whenever you call hi(), greet() and welcome()
-    # are also called. However the greet() and welcome() functions
-    # are not available outside the hi() function e.g:
+    
+    # Bất cứ khi nào bạn gọi hi(), thì greet() và welcome() cũng được gọi
+    # Tuy nhiên các hàm greet() và welcome() không hợp lệ khi gọi từ bên ngoài hàm hi() ví dụ
 
     greet()
-    #outputs: NameError: name 'greet' is not defined
+    #Kết quả: NameError: name 'greet' is not defined
 
-So now we know that we can define functions in other functions. In
-other words: we can make nested functions. Now you need to learn one
-more thing, that functions can return functions too.
+Bây giờ bạn biết cách định nghĩa các hàm trong các hàm khác. Hay nói cách khác: 
+bạn có thể tạo ra các hàm lồng nhau. Bây giờ bạn cần học thêm một điều nữa, đó là 
+các hàm cũng có thể trả về các hàm
 
-Returning functions from within functions:
+Trả về các hàm từ bên trong các hàm:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 It is not necessary to execute a function within another function, we
 can return it as an output as well:
-
+Một hàm không nhất thiết phải thực thi ở bên trong một hàm khác, chúng ta
+có thể trả về hàm này như là trả về kết quả:
 .. code:: python
 
     def hi(name="yasoob"):
@@ -102,27 +99,19 @@ can return it as an output as well:
 
     a = hi()
     print(a)
-    #outputs: <function greet at 0x7f2143c01500>
+    #Kết quả: <function greet at 0x7f2143c01500>
 
-    #This clearly shows that `a` now points to the greet() function in hi()
-    #Now try this
+    # Ta có thể thấy rằng `a` hiện tại trỏ tới hàm greet() trong hi()
+    #Cùng thử xem
 
     print(a())
-    #outputs: now you are in the greet() function
+    #Kết quả: now you are in the greet() function
 
-Just take a look at the code again. In the ``if/else`` clause we are
-returning ``greet`` and ``welcome``, not ``greet()`` and ``welcome()``.
-Why is that? It's because when you put a pair of parentheses after it, the
-function gets executed; whereas if you don't put parenthesis after it,
-then it can be passed around and can be assigned to other variables
-without executing it. Did you get it? Let me explain it in a little bit
-more detail. When we write ``a = hi()``, ``hi()`` gets executed and
-because the name is yasoob by default, the function ``greet`` is returned.
-If we change the statement to ``a = hi(name = "ali")`` then the ``welcome``
-function will be returned. We can also do print ``hi()()`` which outputs
-*now you are in the greet() function*.
 
-Giving a function as an argument to another function:
+Cùng nhìn lại đoạn mã một lần nữa. Trong khối ``if/else`` chúng ta đang trả về ``greet`` và ``welcome``, không phải là ``greet()`` và ``welcome()``.
+Sao lại vậy? Bởi vì khi chúng ta đặt cặp dấu ngoặc đơn sau một hàm, hàm đó sẽ được thực thi; trái lại nếu bạn không đặt các dấu ngoặc đơn phải sau nó, khi đó nó thể được truyền đi và có thể được gán cho các biến khác. Để tôi giải thích chi tiết hơn. Khi bạn viết ``a = hi()``, ``hi()`` được thực thi và bởi vì biến name có giá trị mặc định là yasoob, hàm ``greet`` được trả về. Nếu chúng ta thay đổi câu lệnh thành ``a = hi(name = "ali")`` khi đó hàm ``welcome`` sẽ được trả về. Chúng ta cũng có thể gọi  ``hi()()`` để in ra đoạn thông điệp *now you are in the greet() function*.
+
+Hàm là một tham số truyền cho hàm khác:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code:: python
@@ -135,17 +124,17 @@ Giving a function as an argument to another function:
         print(func())
 
     doSomethingBeforeHi(hi)
-    #outputs:I am doing some boring work before executing hi()
+    #Kết quả:I am doing some boring work before executing hi()
     #        hi yasoob!
 
-Now you have all the required knowledge to learn what decorators really
-are. Decorators let you execute code before and after a function.
+Giờ thì ta đã có đủ kiến thức để học về decorators. Decorators cho phép bạn thực thi code trước và sau một hàm
 
-Writing your first decorator:
+Viết decorator đầu tiên của bạn:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the last example we actually made a decorator! Let's modify the
-previous decorator and make a little bit more usable program:
+Trong ví dụ cuối này chúng ta sẽ thực sự tạo ra một decorator! Hãy thay đổi decorator trước đó và tạo ra 
+một chương trình hữu ích hơn:
+
 
 .. code:: python
 
