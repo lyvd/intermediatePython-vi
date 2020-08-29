@@ -1,10 +1,10 @@
 Enumerate
 ---------
 
-Enumerate is a built-in function of Python. Its usefulness can not be
-summarized in a single line. Yet most of the newcomers and even some
-advanced programmers are unaware of it. It allows us to loop over
-something and have an automatic counter. Here is an example:
+
+Enumerate là một hàm tích hợp sẵn (built-in) của Python. Tính hữu dụng của hàm này không thể tóm tắt chỉ trong một dòng đọc. 
+Hầu hết những người mới bắt đầu với Python hay thậm chí những người đã làm một thời gian cũng khoong biết về enumberate.
+Hàm này cho phép ta lặp (loop) qua một thứ gì đó với một biến đếm tự động. Nhìn vào ví dụ dưới đây:
 
 .. code:: python
     
@@ -12,14 +12,14 @@ something and have an automatic counter. Here is an example:
     for counter, value in enumerate(my_list):
         print counter, value
 
-    # Output:
+    # Kết quả:
     # 0 apple
     # 1 banana
     # 2 grapes
     # 3 pear
 
-And there is more! ``enumerate`` also accepts an optional argument that
-allows us to specify the starting index of the counter.
+
+Hơn thế nữa! ``enumerate`` còn chấp nhận một tham số tuỳ chọn cho phép ta chỉ định chỉ số bắt đầu của biến đếm
 
 .. code:: python
 
@@ -27,20 +27,18 @@ allows us to specify the starting index of the counter.
     for c, value in enumerate(my_list, 1):
         print(c, value)
 
-    # Output:
+    # Kết quả:
     # 1 apple
     # 2 banana
     # 3 grapes
     # 4 pear
 
-An example of where the optional argument of ``enumerate``comes in handy
-is creating tuples containing the index and list item using a list. Here 
-is an example:
+Việc chỉ định chỉ số bắt đầu này hữu ích khi ta muốn tạo một danh sách các tuples chứa phần tử và chỉ số từ một list. Ví dụ
 
 .. code:: python
 
     my_list = ['apple', 'banana', 'grapes', 'pear']
     counter_list = list(enumerate(my_list, 1))
     print(counter_list)
-    # Output: [(1, 'apple'), (2, 'banana'), (3, 'grapes'), (4, 'pear')]
+    #Kết quả: [(1, 'apple'), (2, 'banana'), (3, 'grapes'), (4, 'pear')]
 
