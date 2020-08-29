@@ -3,27 +3,27 @@
 Intermediate Python
 ===================
 
-Python is an amazing language with a strong and friendly community of programmers. However, there is a lack of documentation on what to learn after getting the basics of Python down your throat. Through this book I aim to solve this problem. I will give you bits of information about some interesting topics which you can further explore.
+Python là một ngôn ngữ mạnh mẽ và thân thiện với các lập trình viên. Tuy nhiên, tôi nhận thấy thiếu đi một tài liệu dành cho những người đã có cơ bản về Python, và muốn đi sâu hơn. Trong cuốn sách này tôi sẽ cung cấp cho bạn thông tin về một vài chủ đề hấp dẫn mà bạn có thể tìm hiểu thêm.
 
-The topics which are discussed in this book will open your mind to some nice corners of Python language. This book is an outcome of my desire to have something like this when I was beginning to learn Python.
 
-If you are a beginner, intermediate or even an advanced programmer there is something for you in this book.
+Các chủ đề được thảo luận trong cuốn sách này sẽ giúp bạn mở rộng tầm nhìn tới các ngóc ngách khác của Python. Cuốn sách này là kết quả của quá trình học Python của tôi, từ khi mới bắt đầu.
 
-Please note that this book is not a tutorial and does not teach you Python. The topics are not explained in-depth and only the minimum required information is given.
+Nếu bạn là một người mới bắt đầu với Python, hay bạn đã làm việc với Python khá lâu, cuốn sách này chứa đựng một vài thứ dành cho bạn. 
 
-I am sure you are as excited as I am. So, let’s start!
+Lưu ý rằng cuốn sách này không phải là một tài liệu hướng dẫn, cuốn sách không dạy Python cho bạn. Các chủ đề không được giải thích sâu sắc và chỉ một số thông tin tối thiểu được đáp ứng. 
 
-Note: This book is a work in progress. If you find anything which you can further improve (I know you will find a lot of stuff) then kindly submit a pull request. :)
+Chắc là bạn đã bắt đầu hứng thú. Hãy cùng bắt đầu.
 
-Moreover, if you want to add more content to this book then kindly submit a pull request and I will be more than happy to merge it. :+1:
+Chú ý rằng cuốn sách này đang trong quá trình hoàn thiện. Nếu bạn tìm ra bất cứ thứ gì có thể được cải thiện (tôi biết rằng bạn sẽ tìm ra rất nhiều thứ), hãy gửi cho tôi một pull request.
+
+Ngoài ra, nếu bạn muốn bổ sung thêm nhiều nội dung cho cuốn sách, hãy tạo một pull request, tôi rất vui lòng thêm các đống góp của bạn vào cuốn sách :+1:
+
+-------------------
+**Note:** Nếu bạn muốn hỗ trợ chi phí (donate) cho tôi bạn có thể mua phiên bản đóng góp của cuốn sách từ [Gumroad](https://gum.co/intermediate_python). Nếu cuốn sách này giúp ích cho bạn, hãy chia sẻ kinh nghiệm của bạn với [tôi] (mailto:yasoob.khld@gmail.com). Tôi thực sự cảm kích về điều này.
 
 -------------------
 
-**Note:** If you want to tip me for my work then you can buy the donation version of this book from [Gumroad](https://gum.co/intermediate_python). Apart from that, if this book somehow helps you then kindly share your experience with [me](mailto:yasoob.khld@gmail.com). I would really appreciate it.
-
--------------------
-
-Table of Contents:
+Bảng nội dung:
 ------------------
 1) Programmer tools
     - [Virtual Environment](virtual_environment.rst)
@@ -59,7 +59,7 @@ Table of Contents:
     - [Targeting Python 2+3](targeting_python_2_3.rst)
     - [Python C extensions](python_c_extension.rst)
 
-Author:
+Tác giả:
 ------
 
 - [Muhammad Yasoob Ullah Khalid](https://github.com/yasoob)
@@ -69,11 +69,11 @@ Acknowledgement:
 
 - [Philipp Hagemeister](https://github.com/phihag):
 
-He wrote the chapter on Open function. Thanks Philipp! :+1:
-
+Philipp viết chương Open function. Cám ơn Philipp! :+1:
 Translation:
 ------------
-If you want to translate this book in any other language then kindly let [me know](mailto:yasoob.khld@gmail.com). I would love your contribution. The currently translated versions are listed below:
+Nếu bạn muốn dịch cuốn sách này sang một ngôn ngữ khác hãy [báo cho tôi](mailto:yasoob.khld@gmail.com). Tôi rất cảm kích đóng góp của bạn. Dưới đây là các phiên bản của cuốn sách được dịch ra các ngôn ngữ khác nhau:
+
 
 - [Chinese](https://github.com/eastlakeside/interpy-zh)
 - [Russian](https://github.com/lancelote/interpy-ru)
@@ -81,11 +81,11 @@ If you want to translate this book in any other language then kindly let [me kno
 - [Portuguese](https://github.com/joanasouza/intermediatePython)
 - [Spanish](https://github.com/cursospython/LibroPython)
 
-License:
+Giấy phép:
 -------
 
-This book is released under the [following](http://creativecommons.org/licenses/by-nc-sa/4.0/) CC license (CC BY-NC-SA 4.0).
+ Cuốn sách được xuất bản theo bản quyền [sau đây](http://creativecommons.org/licenses/by-nc-sa/4.0/) CC license (CC BY-NC-SA 4.0).
 
-If you end up using/recommending this book to someone then kindly [let me know](mailto:yasoob.khld@gmail.com). :smile:
+Nếu bạn sử dụng/khuyến nghị cuốn sách này cho ai đó, hãy [cho tôi biết](mailto:yasoob.khld@gmail.com). :smile:
 
 
